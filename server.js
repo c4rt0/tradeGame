@@ -40,11 +40,24 @@ con.connect(function(err){
 
 	// Inserting data into table
 
-	var sql = "INSERT INTO users (name, email) VALUES ('Adam Piasecki', 'c4rt0gr4ph3r@gmail.com')";
-	con.query(sql, function(err, result) {
+	// var sql = "INSERT INTO users (name, email) VALUES ('Mia Piasecki', 'mia@gmail.com')";
+	// con.query(sql, function(err, result) {
+	// 	if (err) throw err;
+	// 	console.log("Data sucessfully inserted into table...");
+	// });
+
+	// Insert many values into table
+
+	var sql = "INSERT INTO users (name, email) VALUES ?";
+	var values = [
+		['Sample1', 'sample1@email.com'],
+		['Sample2', 'sample2@email.com'],
+		['Sample3', 'sample3@email.com'],	
+	]
+	con.query(sql, [values], function(err, result) {
 		if (err) throw err;
-		console.log("Data sucessfully inserted into table...");
-	})
+		console.log("Records succesfully inserted: " + result.affectedRows);
+	});
 });
 
 var http = require ('http');
