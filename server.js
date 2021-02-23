@@ -19,6 +19,7 @@ con.connect(function(err){
 	// 	if (err) throw err;
 	// 	console.log("DB Created ! :)");
 	// });
+	
 	// Create TABLE
 	var sql = "CREATE TABLE testUsers(id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), email VARCHAR(255))";
 	con.query(sql, function(err, result) {
