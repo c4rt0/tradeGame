@@ -9,7 +9,7 @@ var con = mysql.createConnection({
 	database: "tradedb",
 })
 
-// Connect to MySQL
+// MySQL operations
 
 con.connect(function(err){
 	if(err) throw err;
@@ -24,11 +24,27 @@ con.connect(function(err){
 
 	// Create TABLE
 
-	var sql = "CREATE TABLE testUsers(id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), email VARCHAR(255))";
+	// var sql = "CREATE TABLE users(id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), email VARCHAR(255))";
+	// con.query(sql, function(err, result) {
+	// 	if (err) throw err;
+	// 	console.log("Table has been created !");
+	// });
+
+	// ALTERING CONTENTS OF A TABLE
+
+	// var sql="ALTER TABLE users ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY";
+	// con.query(sql, function(err, result) {
+	// 	if (err) throw err;
+	// 	console.log("Table has been altered...");
+	// });
+
+	// Inserting data into table
+
+	var sql = "INSERT INTO users (name, email) VALUES ('Adam Piasecki', 'c4rt0gr4ph3r@gmail.com')";
 	con.query(sql, function(err, result) {
 		if (err) throw err;
-		console.log("Table has been created !");
-	});
+		console.log("Data sucessfully inserted into table...");
+	})
 });
 
 var http = require ('http');
