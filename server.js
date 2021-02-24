@@ -177,21 +177,39 @@ con.connect(function(err){
 
 	// con.query(sql, [name_search,id_search], function(err, result, fields) {
 	// 	if (err) throw err;
-	// 	console.log("---------------------------------------")
-	// 	console.log(" TEMPLATE ")
 	// 	console.log(result);
 	// });
 
 	// ORDER BY
-	
-	var sql = "SELECT * FROM users ORDER BY name";
 
+	//descending
+	// var sql = "SELECT * FROM users ORDER BY name DESC";
+
+	//ascending
+	// var sql = "SELECT * FROM users ORDER BY name";
+
+	// con.query(sql, function(err, result) {
+	// 	if (err) throw err;
+	// 	console.log("---------------------------------------");
+	// 	console.log(result);
+	// 	console.log("---------------------------------------");
+	// });
+
+	// DELETING data from table
+	var sql = "DELETE FROM users WHERE id = 9";
 	con.query(sql, function(err, result) {
 		if (err) throw err;
-		console.log("---------------------------------------")
-		console.log(" TEMPLATE ")
-		console.log(result);
+		console.log("Entry deleted ... ");
 	});
+
+	var sql = "SELECT * FROM users ORDER BY id";
+	con.query(sql, function(err, result) {
+		if (err) throw err;
+		console.log("------------ Table after deleted data ----------------");
+		console.log(result);
+		console.log("------------------------------------------------------");
+	});
+
 });
 
 var http = require ('http');
