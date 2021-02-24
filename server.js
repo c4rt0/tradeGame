@@ -168,18 +168,30 @@ con.connect(function(err){
 	// 	console.log(result);
 	// });
 
-	var name_search = "s%";
-	var id_search = "1";
+	// Looking up data in DB using search variables:
 
-	var sql = "SELECT id, name, email FROM users WHERE name LIKE ? OR id = ?";
+	// var name_search = "s%";
+	// var id_search = "1";
 
-	con.query(sql, [name_search,id_search], function(err, result, fields) {
+	// var sql = "SELECT id, name, email FROM users WHERE name LIKE ? OR id = ?";
+
+	// con.query(sql, [name_search,id_search], function(err, result, fields) {
+	// 	if (err) throw err;
+	// 	console.log("---------------------------------------")
+	// 	console.log(" TEMPLATE ")
+	// 	console.log(result);
+	// });
+
+	// ORDER BY
+	
+	var sql = "SELECT * FROM users ORDER BY name";
+
+	con.query(sql, function(err, result) {
 		if (err) throw err;
 		console.log("---------------------------------------")
 		console.log(" TEMPLATE ")
 		console.log(result);
 	});
-
 });
 
 var http = require ('http');
