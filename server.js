@@ -106,23 +106,63 @@ con.connect(function(err){
 
 	// FIELDS
 
-	var sql = "SELECT * FROM users";
+	// var sql = "SELECT * FROM users";
+	// con.query(sql, function(err, result, fields) {
+	// 	if (err) throw err;
+	// 	// all names :
+	// 	var i;
+	// 	for (i = 0; i < fields.length; i++ ) {
+	// 		console.log(fields[i].name);
+	// 	};
+
+	// 	// only name of first field (0'th element)
+	// 	console.log("-----------------------");
+	// 	console.log("Only name of first element : ");
+	// 	console.log(fields[0].name);
+	// 	console.log("-----------------------");
+	// 	console.log("Plus content of the first entry : ");
+	// 	console.log(result[0].name + " | " + result[0].email);
+	// });
+
+	// WHERE CLAUSE
+
+	// var sql = "SELECT name, email FROM users WHERE name = 'Adam Piasecki'";
+	// con.query(sql, function(err, result, fields) {
+	// 	if (err) throw err;
+	// 	console.log(result);
+	// });
+	
+	// var sql = "SELECT name, email FROM users WHERE name LIKE 's%'";
+	// con.query(sql, function(err, result, fields) {
+	// 	if (err) throw err;
+	// 	console.log(result);
+	// });
+
+	// OR
+	var sql = "SELECT id, name, email FROM users WHERE name LIKE 's%' OR id = 1";
 	con.query(sql, function(err, result, fields) {
 		if (err) throw err;
-		// all names :
-		var i;
-		for (i = 0; i < fields.length; i++ ) {
-			console.log(fields[i].name);
-		};
+		console.log("---------------------------------------")
+		console.log("4 Results as both OR statements are true: ")
+		console.log(result);
+	});
 
-		// only name of first field (0'th element)
-		console.log("-----------------------");
-		console.log("Only name of first element : ");
-		console.log(fields[0].name);
-		console.log("-----------------------");
-		console.log("Plus content of the first entry : ");
-		console.log(result[0].name + " | " + result[0].email);
-		
+	// AND
+	var sql = "SELECT id, name, email FROM users WHERE name LIKE 's%' AND id = 11";
+	con.query(sql, function(err, result, fields) {
+		if (err) throw err;
+		console.log("---------------------------------------")
+		console.log("AND in this case returns empty array: ")
+		console.log(result);
+	});
+
+	// 	AND x 2
+	var sql = "SELECT id, name, email FROM users WHERE name LIKE 'A%' AND id = 1";
+	con.query(sql, function(err, result, fields) {
+		if (err) throw err;
+		console.log("---------------------------------------")
+		console.log("AND in this case returns first entry as there is element starting with A: ")
+		console.log(result);
 	});
 
 });
