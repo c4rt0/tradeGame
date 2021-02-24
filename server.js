@@ -98,10 +98,27 @@ con.connect(function(err){
 
 	// Pulling selected columns from DB only
 
-	var sql = "SELECT id, name, email FROM users";
+	// var sql = "SELECT id, name, email FROM users";
+	// con.query(sql, function(err, result, fields) {
+	// 	if (err) throw err;
+	// 	console.log(result);
+	// });
+
+	// FIELDS
+
+	var sql = "SELECT * FROM users";
 	con.query(sql, function(err, result, fields) {
 		if (err) throw err;
-		console.log(result);
+		// all names :
+		var i;
+		for (i = 0; i < fields.length; i++ ) {
+			console.log(fields[i].name);
+		};
+
+		// only name of first field (0'th element)
+		console.log("Some text")
+		console.log(" ")
+		console.log(fields[0].name);		
 	});
 
 });
