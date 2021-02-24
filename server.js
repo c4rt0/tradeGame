@@ -86,13 +86,22 @@ con.connect(function(err){
 	// 	console.log(result[0].name);
 	// });
 
-	var sql = "SELECT * FROM users";
+	// Introducing simple loop to pull names from all DB data
+
+	// var sql = "SELECT * FROM users";
+	// con.query(sql, function(err, result, fields) {
+	// 	if (err) throw err;
+	// 	var i;
+	// 	for (i= 0; i < result.length; i++ ) {
+	// 		console.log(result[i].name + " | " + result[i].email);
+	// 	};
+
+	// Pulling selected columns from DB only
+
+	var sql = "SELECT id, name, email FROM users";
 	con.query(sql, function(err, result, fields) {
 		if (err) throw err;
-		var i;
-		for (i= 0; i < result.length; i++ ) {
-			console.log(result[i].name + " | " + result[i].email);
-		};
+		console.log(result);
 	});
 
 });
