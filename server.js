@@ -139,29 +139,44 @@ con.connect(function(err){
 	// });
 
 	// OR
-	var sql = "SELECT id, name, email FROM users WHERE name LIKE 's%' OR id = 1";
-	con.query(sql, function(err, result, fields) {
-		if (err) throw err;
-		console.log("---------------------------------------")
-		console.log("4 Results as both OR statements are true: ")
-		console.log(result);
-	});
+
+	// var sql = "SELECT id, name, email FROM users WHERE name LIKE 's%' OR id = 1";
+	// con.query(sql, function(err, result, fields) {
+	// 	if (err) throw err;
+	// 	console.log("---------------------------------------")
+	// 	console.log("4 Results as both OR statements are true: ")
+	// 	console.log(result);
+	// });
 
 	// AND
-	var sql = "SELECT id, name, email FROM users WHERE name LIKE 's%' AND id = 11";
-	con.query(sql, function(err, result, fields) {
-		if (err) throw err;
-		console.log("---------------------------------------")
-		console.log("AND in this case returns empty array: ")
-		console.log(result);
-	});
+
+	// var sql = "SELECT id, name, email FROM users WHERE name LIKE 's%' AND id = 11";
+	// con.query(sql, function(err, result, fields) {
+	// 	if (err) throw err;
+	// 	console.log("---------------------------------------")
+	// 	console.log("AND in this case returns empty array: ")
+	// 	console.log(result);
+	// });
 
 	// 	AND x 2
-	var sql = "SELECT id, name, email FROM users WHERE name LIKE 'A%' AND id = 1";
-	con.query(sql, function(err, result, fields) {
+
+	// var sql = "SELECT id, name, email FROM users WHERE name LIKE 'A%' AND id = 1";
+	// con.query(sql, function(err, result, fields) {
+	// 	if (err) throw err;
+	// 	console.log("---------------------------------------")
+	// 	console.log("AND in this case returns first entry as there is element starting with A: ")
+	// 	console.log(result);
+	// });
+
+	var name_search = "s%";
+	var id_search = "1";
+
+	var sql = "SELECT id, name, email FROM users WHERE name LIKE ? OR id = ?";
+
+	con.query(sql, [name_search,id_search], function(err, result, fields) {
 		if (err) throw err;
 		console.log("---------------------------------------")
-		console.log("AND in this case returns first entry as there is element starting with A: ")
+		console.log(" TEMPLATE ")
 		console.log(result);
 	});
 
