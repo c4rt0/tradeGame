@@ -72,10 +72,18 @@ con.connect(function(err){
 
 	// Pulling ALL data out of the database 
 
+	// var sql = "SELECT * FROM users";
+	// con.query(sql, function(err, result, fields) {
+	// 	if (err) throw err;
+	// 	console.log(result);
+	// });
+
+	// Pulling only selected fields out of the database 
+
 	var sql = "SELECT * FROM users";
 	con.query(sql, function(err, result, fields) {
 		if (err) throw err;
-		console.log(result);
+		console.log(result[0].name);
 	});
 });
 
