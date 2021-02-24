@@ -116,9 +116,12 @@ con.connect(function(err){
 		};
 
 		// only name of first field (0'th element)
-		console.log("Some text")
-		console.log(" ")
-		console.log(fields[0].name);		
+		console.log("-----------------------");
+		console.log("Only name of first element : ");
+		console.log(fields[0].name);
+		console.log("-----------------------");
+		console.log("Plus content of the first entry : ");
+		console.log(result[0].name);
 	});
 
 });
