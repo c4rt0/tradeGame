@@ -62,12 +62,20 @@ con.connect(function(err){
 
 	// Presenting results
 
-	var sql = "INSERT INTO users (name, email) VALUES ('Jack Nicholson', 'creepy@gmail.com')";
-	con.query(sql, function(err, result) {
+	// var sql = "INSERT INTO users (name, email) VALUES ('Jack Nicholson', 'creepy@gmail.com')";
+	// con.query(sql, function(err, result) {
+	// 	if (err) throw err;
+	// 	console.log(result);
+	// 	console.log("Affected Rows: ")
+	// 	console.log(result.affectedRows);
+	// });
+
+	// Pulling ALL data out of the database 
+
+	var sql = "SELECT * FROM users";
+	con.query(sql, function(err, result, fields) {
 		if (err) throw err;
 		console.log(result);
-		console.log("Affected Rows: ")
-		console.log(result.affectedRows);
 	});
 });
 
