@@ -80,11 +80,21 @@ con.connect(function(err){
 
 	// Pulling only selected fields out of the database 
 
+	// var sql = "SELECT * FROM users";
+	// con.query(sql, function(err, result, fields) {
+	// 	if (err) throw err;
+	// 	console.log(result[0].name);
+	// });
+
 	var sql = "SELECT * FROM users";
 	con.query(sql, function(err, result, fields) {
 		if (err) throw err;
-		console.log(result[0].name);
+		var i;
+		for (i= 0; i < result.length; i++ ) {
+			console.log(result[i].name + " | " + result[i].email);
+		};
 	});
+
 });
 
 var http = require ('http');
