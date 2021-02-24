@@ -121,7 +121,8 @@ con.connect(function(err){
 		console.log(fields[0].name);
 		console.log("-----------------------");
 		console.log("Plus content of the first entry : ");
-		console.log(result[0].name);
+		console.log(result[0].name + " | " + result[0].email);
+		
 	});
 
 });
