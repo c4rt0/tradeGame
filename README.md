@@ -8,3 +8,9 @@ To test MySQL functionality, uncomment selected part of code and run:
 ```bash
 node mysql_server.js
 ```
+
+Run tradegame with :
+
+```bash
+npm run dev
+```
