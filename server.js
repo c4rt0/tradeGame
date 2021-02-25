@@ -86,7 +86,7 @@ con.connect(function(err){
 	// 	console.log(result[0].name);
 	// });
 
-	// Introducing simple loop to pull names from all DB data
+	// Introducing simple LOOP to pull names from all DB data
 
 	// var sql = "SELECT * FROM users";
 	// con.query(sql, function(err, result, fields) {
@@ -96,7 +96,7 @@ con.connect(function(err){
 	// 		console.log(result[i].name + " | " + result[i].email);
 	// 	};
 
-	// Pulling selected columns from DB only
+	// PULLING selected columns from DB only
 
 	// var sql = "SELECT id, name, email FROM users";
 	// con.query(sql, function(err, result, fields) {
@@ -168,7 +168,7 @@ con.connect(function(err){
 	// 	console.log(result);
 	// });
 
-	// Looking up data in DB using search variables:
+	// LOOKING UP data in DB using search variables:
 
 	// var name_search = "s%";
 	// var id_search = "1";
@@ -196,18 +196,24 @@ con.connect(function(err){
 	// });
 
 	// DELETING data from table
-	var sql = "DELETE FROM users WHERE id = 9";
-	con.query(sql, function(err, result) {
-		if (err) throw err;
-		console.log("Entry deleted ... ");
-	});
 
-	var sql = "SELECT * FROM users ORDER BY id";
+	// var sql = "DELETE FROM users WHERE id = 9";
+	// con.query(sql, function(err, result) {
+	// 	if (err) throw err;
+	// 	console.log("Entry deleted ... ");
+	// });
+
+	// UPDATE
+
+	var sql = "UPDATE users SET name = 'Adamos Piasecki' WHERE name = 'Adam Piasecki'";
 	con.query(sql, function(err, result) {
 		if (err) throw err;
-		console.log("------------ Table after deleted data ----------------");
+		console.log("-------------------- UPDATED -------------------------");
 		console.log(result);
 		console.log("------------------------------------------------------");
+
+		// lets just exit at the end of this code block
+		exit();
 	});
 
 });
@@ -216,6 +222,7 @@ var http = require ('http');
 var fs = require ('fs');
 var port = 8080;
 var url = require('url');
+const { exit } = require('process');
 
 http.createServer(function (req, res) {
 	var q = url.parse(req.url, true);
