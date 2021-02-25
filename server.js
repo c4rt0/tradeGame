@@ -207,12 +207,20 @@ con.connect(function(err){
 
 	// var sql = "UPDATE users SET name = 'Adamos Piasecki' WHERE name = 'Adam Piasecki'";
 	// var sql = "UPDATE users SET name = 'Adam Piasecki' WHERE id = 1";
-	var sql = "SELECT * FROM users";
+
+	// con.query(sql, function(err, result) {
+	// 	if (err) throw err;
+	// 	console.log(result);
+	// 	exit();
+
+	// LIMIT the results
+
+	// var sql = "SELECT * FROM users ORDER BY id DESC LIMIT 2";
+	var sql = "SELECT * FROM users LIMIT 2";
+
 	con.query(sql, function(err, result) {
 		if (err) throw err;
-		console.log("-------------------- UPDATED -------------------------");
 		console.log(result);
-		console.log("------------------------------------------------------");
 
 		// lets just exit at the end of this code block
 		exit();
