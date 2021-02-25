@@ -204,7 +204,7 @@ con.connect(function(err){
 
 	// Finally - just DROP / DELETE that table :)
 
-	var sql = "DROP TABLE users";
+	var sql = "DROP TABLE IF EXISTS users";
 
 	con.query(sql, function(err, result) {
 		if (err) throw err;
