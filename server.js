@@ -203,9 +203,11 @@ con.connect(function(err){
 	// 	console.log("Entry deleted ... ");
 	// });
 
-	// UPDATE
+	// UPDATE CONTENTS of table
 
-	var sql = "UPDATE users SET name = 'Adamos Piasecki' WHERE name = 'Adam Piasecki'";
+	// var sql = "UPDATE users SET name = 'Adamos Piasecki' WHERE name = 'Adam Piasecki'";
+	// var sql = "UPDATE users SET name = 'Adam Piasecki' WHERE id = 1";
+	var sql = "SELECT * FROM users";
 	con.query(sql, function(err, result) {
 		if (err) throw err;
 		console.log("-------------------- UPDATED -------------------------");
