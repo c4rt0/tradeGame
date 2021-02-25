@@ -1,2 +1,7 @@
 <h1> Handlebars page </h1>
 <p>{{stock}}</p>
+</br></br>
+<p>{{#each stock}}
+    {{@key}} | {{this}}</br>
+{{/each}}
+</p>
