@@ -188,35 +188,23 @@ con.connect(function(err){
 	//ascending
 	// var sql = "SELECT * FROM users ORDER BY name";
 
-	// con.query(sql, function(err, result) {
-	// 	if (err) throw err;
-	// 	console.log("---------------------------------------");
-	// 	console.log(result);
-	// 	console.log("---------------------------------------");
-	// });
-
 	// DELETING data from table
 
 	// var sql = "DELETE FROM users WHERE id = 9";
-	// con.query(sql, function(err, result) {
-	// 	if (err) throw err;
-	// 	console.log("Entry deleted ... ");
-	// });
 
 	// UPDATE CONTENTS of table
 
 	// var sql = "UPDATE users SET name = 'Adamos Piasecki' WHERE name = 'Adam Piasecki'";
 	// var sql = "UPDATE users SET name = 'Adam Piasecki' WHERE id = 1";
 
-	// con.query(sql, function(err, result) {
-	// 	if (err) throw err;
-	// 	console.log(result);
-	// 	exit();
-
 	// LIMIT the results
 
 	// var sql = "SELECT * FROM users ORDER BY id DESC LIMIT 2";
-	var sql = "SELECT * FROM users LIMIT 2";
+	// var sql = "SELECT * FROM users LIMIT 2";
+
+	// Finally - just DROP / DELETE that table :)
+
+	var sql = "DROP TABLE users";
 
 	con.query(sql, function(err, result) {
 		if (err) throw err;
