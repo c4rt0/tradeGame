@@ -1,0 +1,28 @@
+{
+  "name": "tradeGame",
+  "version": "1.0.0",
+  "description": "While running this app remember to install node and some sort of mysql server.\r I simply installed Wampserver64 just because it's convinient, quick and easy to use. Once server is up and running, in terminal navigate to directory with server.js file and type in :",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/c4rt0/tradeGame.git"
+  },
+  "keywords": [],
+  "author": "Adam Piasecki",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/c4rt0/tradeGame/issues"
+  },
+  "homepage": "https://github.com/c4rt0/tradeGame#readme"
+}
