@@ -23,9 +23,9 @@
               <a class="nav-link" href="about.html">About</a>
             </li>
           </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-warning" type="submit">Search</button>
+          <form class="d-flex" action="/ticker" method="POST">
+            <input class="form-control me-2" type="search" placeholder="Search ticker" aria-label="Search" name="stockTicker">
+            <button class="btn btn-outline-warning" type="submit">GO!</button>
           </form>
         </div>
       </div>
