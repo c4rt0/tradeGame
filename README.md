@@ -14,3 +14,9 @@ Run tradegame with :
 ```bash
 npm run dev
 ```
+
+In case you want to have a look at all available tickers under iexcloud.io, just replace token in the link below:
+
+```
+https://cloud.iexapis.com/beta/ref-data/symbols?token=YOUR_TOKEN_HERE
+```

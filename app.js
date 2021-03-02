@@ -11,29 +11,26 @@ const PORT = process.env.PORT || 5000; 	// The double pipe here allows to use th
 // use bodyParser middleware
 app.use(bodyParser.urlencoded({extended: false}));
 
-// Create CALL API function
-function callInitialApi(finishedApiCall, ticker) {
-    var ticker = "TSLA"
-    request('https://cloud.iexapis.com/stable/stock/'+ ticker +'/quote?token=TOKEN', { json: true }, (err, res, body) => {
-        if (err) {return console.log(err);}
-        console.log("<<< No error detected, while connecting to IEX Cloud API >>> " + body);
-        if (res.statusCode === 200) {
-            finishedApiCall(body);
-        };
-    });
-};
-
-// Create CALL API function
+// CALL API function
 function callApi(finishedApiCall, ticker) {
-    request('https://cloud.iexapis.com/stable/stock/'+ ticker + '/quote?token=TOKEN', { json: true }, (err, res, body) => {
-        if (err) {return console.log(err);}
-        console.log("<<< No error detected, while connecting to IEX Cloud API >>> " + body);
-        if (res.statusCode === 200) {
-            finishedApiCall(body);
-        };
-    });
-};
-
+    function iexApiRequest() {
+        request('https://cloud.iexapis.com/stable/stock/'+ ticker +'/quote?token=_YOUR_IEX_CLOUD_TOKEN_', { json: true }, (err, res, body) => {
+            if (err) {return console.log(err);}
+            console.log("<<< No error detected, while connecting to IEX Cloud API >>> " + body);
+            if (res.statusCode === 200) {
+                finishedApiCall(body);
+            };
+        });
+    };
+    if (ticker != null) {
+        iexApiRequest();
+    } else {
+        let randomTicker = ["TSLA", "AAPL", "GOOG", "SPX", "GM", "FB"];
+        ticker = randomTicker[Math.floor(Math.random() * randomTicker.length)];
+        console.log(" ^_^ : Random ticker : " + ticker);
+        iexApiRequest();
+    };
+}
 
 // Ser Handlebars middleware
 app.engine('handlebars', exphbs());
@@ -41,7 +38,7 @@ app.set('view engine', 'handlebars');
 
 // Set Handlebar GET route
 app.get('/', function (req, res) {
-    callInitialApi(function(whileApiCallIsComplete) {
+    callApi(function(whileApiCallIsComplete) {
         res.render('home', {
             stock: whileApiCallIsComplete,
         });
@@ -49,9 +46,9 @@ app.get('/', function (req, res) {
 });
 
 // Set Handlebar POST TICKER route
-app.post('/ticker', function (req, res) {
+app.post('/', function (req, res) {
     callApi(function(whileApiCallIsComplete) {
-        res.render('ticker', {
+        res.render('home', {
             stock: whileApiCallIsComplete,
         });
     }, req.body.stockTicker);
@@ -60,15 +57,6 @@ app.post('/ticker', function (req, res) {
 //create about page route
 app.get('/about.html', function (req, res) {
     res.render('about');
-});
-
-// Set Handlebar GET TICKER route
-app.get('/ticker', function (req, res) {
-    callApi(function(whileApiCallIsComplete) {
-        res.render('ticker', {
-            stock: whileApiCallIsComplete,
-        });
-    });
 });
 
 // Set static folder
