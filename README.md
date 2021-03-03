@@ -33,4 +33,5 @@ Samples : sampleStockData/
 example of the .env file :
 
 > IEX_API_KEY = YOUR_TOKEN_HERE
+
 > PORT = 5000
