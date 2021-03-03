@@ -5,6 +5,7 @@ const exphbs  = require('express-handlebars');
 const path = require('path');
 const request = require('request');
 const bodyParser = require('body-parser');
+const token = process.env.IEX_API_KEY
 const PORT = process.env.PORT || 5000; 	// The double pipe here allows to use the OR function, where once we deploy it
 										// locally we use port 5000, when released it uses server specific PORT... 
 
@@ -14,7 +15,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 // CALL API function
 function callApi(finishedApiCall, ticker) {
     function iexApiRequest() {
-        request('https://cloud.iexapis.com/stable/stock/'+ ticker +'/quote?token=_YOUR_IEX_CLOUD_TOKEN_', { json: true }, (err, res, body) => {
+        request('https://cloud.iexapis.com/stable/stock/'+ ticker +'/quote?token=' + token, { json: true }, (err, res, body) => {
             if (err) {return console.log(err);}
             console.log("<<< No error detected, while connecting to IEX Cloud API >>> " + body);
             if (res.statusCode === 200) {

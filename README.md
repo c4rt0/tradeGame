@@ -29,3 +29,8 @@ https://cloud.iexapis.com/stable/stock/aapl/chart/1y?token=YOUR_TOKEN_HERE
 ```
 
 Samples : sampleStockData/
+
+example of the .env file :
+
+> IEX_API_KEY = pk_34ef482cf8ea4265aaf8994b06f6fc25
+> PORT = 5000
