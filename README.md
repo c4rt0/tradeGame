@@ -30,8 +30,10 @@ https://cloud.iexapis.com/stable/stock/aapl/chart/1y?token=YOUR_TOKEN_HERE
 
 Samples : sampleStockData/
 
-example of the .env file :
+Location of .env file same as app.js.
+Example of the .env file :
 
-> IEX_API_KEY = YOUR_TOKEN_HERE
-
-> PORT = 5000
+```
+IEX_API_KEY = YOUR_TOKEN_HERE
+PORT = 5000
+```
