@@ -17,7 +17,7 @@ function callApi(finishedApiCall, ticker) {
     function iexApiRequest() {
         request('https://cloud.iexapis.com/stable/stock/'+ ticker +'/quote?token=' + token, { json: true }, (err, res, body) => {
             if (err) {return console.log(err);}
-            console.log("<<< No error detected, while connecting to IEX Cloud API >>> " + body);
+            console.log(" ");
             if (res.statusCode === 200) {
                 finishedApiCall(body);
             };
@@ -28,7 +28,7 @@ function callApi(finishedApiCall, ticker) {
     } else {
         let randomTicker = ["TSLA", "AAPL", "GOOG", "SPX", "GM", "FB"];
         ticker = randomTicker[Math.floor(Math.random() * randomTicker.length)];
-        console.log(" ^_^ : Random ticker : " + ticker);
+        console.log("Random ticker selected: " + ticker);
         iexApiRequest();
     };
 }
