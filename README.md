@@ -22,7 +22,10 @@ https://cloud.iexapis.com/beta/ref-data/symbols?token=YOUR_TOKEN_HERE
 ```
 
 03/02/2021
-Sample request for historical data
+Sample request for historical data:
+
+```
 https://cloud.iexapis.com/stable/stock/aapl/chart/1y?token=YOUR_TOKEN_HERE
+```
 
 Samples : sampleStockData/
