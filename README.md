@@ -101,3 +101,5 @@ mutation {
   }
 }
 ```
+
+![GraphQL trade placed](https://github.com/c4rt0/tradeGame/blob/main/images/GraphQL_User_DB.PNG?raw=true)
