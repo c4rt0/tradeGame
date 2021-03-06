@@ -83,3 +83,5 @@ query {
 ```
 
 Now after running mutation under link above (./graphql) details of event are being saved into mongo database cluster.
+
+At this point, once creating user schema with username and password in GRAPHQL I also installed bcryptjs in order to hash those passwords and compare results to incoming passwords in the future.

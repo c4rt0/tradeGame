@@ -3,9 +3,10 @@ const bodyParser = require('body-parser');
 const graphqlHttp = require('express-graphql').graphqlHTTP;
 const { buildSchema } = require('graphql');
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const Event = require('./models/event');
-
+const User = require('./models/user');
 const app = express();
 
 const events = [];
@@ -24,18 +25,32 @@ app.use(
             date: String!
         }
 
+        type User {
+            _id: ID!
+            email: String!
+            password: String
+        }
+
         input EventInput {
             ticker: String!
             description: String!
             price: Float!
             date: String!
         }
+
+        input UserInput {
+            email: String!
+            password: String!
+        }
+
         type RootQuery {
             events: [Event!]!
         }
         type RootMutation {
             createEvent(eventInput: EventInput): Event
+            createUser(userInput: UserInput): User
         }
+        
         schema {
             query: RootQuery
             mutation: RootMutation
@@ -71,8 +86,30 @@ app.use(
         });
         // events.push(event); //that's no more necessary since we already saved it in DB with above save() method
         // return event;
-      }
-    },
+      },
+      createUser: args=> {
+          return User.findOne({ email: args.userInput.email })
+          .then(user => {
+              if (user) {
+                  throw new Error('User exists already.');
+              } 
+              return bcrypt.hash(args.userInput.password, 12);
+            })
+            .then(hashedPassword => {
+                const user = new User({
+                    email: args.userInput.email,
+                    password: hashedPassword
+                });
+                return user.save();
+            })
+            .then(result => {
+                return {...result._doc, password: null, _id: result.id }; // password: null here overrides the password which now cannot be returned & is hashed anyway
+            })
+            .catch(err => {
+                throw err;
+            });
+            }
+        },
     graphiql: true
   })
 );
