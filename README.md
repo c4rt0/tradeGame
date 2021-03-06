@@ -39,7 +39,8 @@ PORT = 3000
 ```
 
 ============================================================================
-The graphQL version uses nodemon.json as an env file, located in same directory as main app.
+The graphQL (app.js) version uses nodemon.json as an env file, located in same directory.
+
 nodemon.json template:
 
 ```
@@ -53,6 +54,11 @@ nodemon.json template:
 ```
 
 http://localhost:3000/graphql
+
+Date format obtained from Chrome developer console after using:
+```
+new Date().toISOString()
+```
 
 Sample mutation for GRAPHQL:
 
