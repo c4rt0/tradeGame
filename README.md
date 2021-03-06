@@ -38,7 +38,10 @@ IEX_API_KEY = YOUR_TOKEN_HERE
 PORT = 3000
 ```
 
+### 6 Mar 2021
 ============================================================================
+
+
 The graphQL (app.js) version uses nodemon.json as an env file, located in same directory.
 
 nodemon.json template:
@@ -86,7 +89,7 @@ Now after running mutation under link above (./graphql) details of event are bei
 
 At this point, once creating user schema with username and password in GRAPHQL I also installed bcryptjs in order to hash those passwords and compare results to incoming passwords in the future.
 
-* 06 Mar 20221
+============================================================================
 
 Used findOne() to block double user creation based on email address. Mutation for creating user (typed in the GraphiQl - localhost:3000/graphql):
 
