@@ -38,7 +38,7 @@ IEX_API_KEY = YOUR_TOKEN_HERE
 PORT = 3000
 ```
 
-=======================================================================================
+============================================================================
 The graphQL version uses nodemon.json as an env file, located in same directory as main app.
 nodemon.json template:
 
