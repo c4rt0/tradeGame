@@ -47,7 +47,7 @@ app.use(
             events: [Event!]!
         }
         type RootMutation {
-            createEvent(eventInput: EventInput): Event
+            placeTrade(eventInput: EventInput): Event
             createUser(userInput: UserInput): User
         }
         
@@ -68,19 +68,32 @@ app.use(
             throw err;
         });
       },
-      createEvent: args => {
+      placeTrade: args => {
         const event = new Event({
             ticker: args.eventInput.ticker,
             description: args.eventInput.description,
             price: +args.eventInput.price,
-            date: new Date(args.eventInput.date)
+            date: new Date(args.eventInput.date),
+            creator : '6043b9a6b805a717e8b5e1cf'
         });
+        let placedTrade;
         return event
         .save()
         .then(result => {
-            console.log(result);
-            return { ...result._doc, _id: result._doc._id.toString() }; //spread operator 
-        }).catch(err => {
+            placedTrade = { ...result._doc, _id: result._doc._id.toString() };
+            return User.findById('6043b9a6b805a717e8b5e1cf');
+        })
+        .then(user => {
+            if (!user) {
+                throw new Error('User not found.');
+            }
+            user.placedTrades.push(event);
+            return user.save();
+        })
+        .then(result => {
+            return placedTrade;
+        })
+        .catch(err => {
             console.log(err);
             throw err; 
         });
