@@ -35,5 +35,45 @@ Example of the .env file :
 
 ```
 IEX_API_KEY = YOUR_TOKEN_HERE
-PORT = 5000
+PORT = 3000
 ```
+
+=======================================================================================
+The graphQL version uses nodemon.json as an env file, located in same directory as main app.
+nodemon.json template:
+
+```
+{
+    "env": {
+        "MONGO_USER": "username",
+        "MONGO_PASSWORD": "yourmongouserpassword",
+        "MONGO_DB": "your-db-name"
+    }
+}
+```
+
+http://localhost:3000/graphql
+
+Sample mutation for GRAPHQL:
+
+```
+mutation {
+  createEvent(eventInput: {ticker:"AAPL", description:"Some other description", price:121.42, date:"2021-03-06T15:06:50.643Z"}){
+    ticker
+    price
+  }
+}
+```
+
+Sample GRAPHQL querry:
+
+```
+query {
+  events {
+    ticker
+    _id
+  }
+}
+```
+
+Now after running mutation under link above (./graphql) details of event are being saved into mongo database cluster.

@@ -10,6 +10,7 @@
     "express-graphql": "^0.12.0",
     "express-handlebars": "^5.2.1",
     "graphql": "^15.5.0",
+    "mongoose": "^5.11.19",
     "mysql": "^2.18.1",
     "request": "^2.88.2"
   },

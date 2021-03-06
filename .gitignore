@@ -16,3 +16,4 @@ logs
 .vscode/
 *.sw*
 package-lock.json
+nodemon.json
