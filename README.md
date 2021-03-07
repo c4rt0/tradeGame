@@ -102,4 +102,64 @@ mutation {
 }
 ```
 
+Further mutation of placing a trade:
+
+```
+mutation {
+  placeTrade(eventInput: {ticker: "GOOG", description: "One of most common stocks", price: 2108, date: "2021-03-06T17:53:18.661Z"}) {
+    ticker
+    price
+    description
+  }
+}
+```
+
+and it's result:
+
 ![GraphQL trade placed](https://github.com/c4rt0/tradeGame/blob/main/images/GraphQL_User_DB.PNG?raw=true)
+
+======
+
+Looped 
+
+```
+query{
+  events {
+    creator{
+      email
+      placedTrades {
+        ticker
+        price
+        creator {
+          email
+        }
+      }
+    }
+  }
+}
+```
+
+returns:
+
+```
+{
+  "data": {
+    "events": [
+      {
+        "creator": {
+          "email": "test@adamcoding.com",
+          "placedTrades": [
+            {
+              "ticker": "GOOG",
+              "price": 2108,
+              "creator": {
+                "email": "test@adamcoding.com"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
