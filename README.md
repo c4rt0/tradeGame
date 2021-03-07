@@ -163,3 +163,41 @@ returns:
   }
 }
 ```
+```
+query{
+  events {
+    ticker
+    price
+    date
+  }
+}
+```
+returns
+```
+{
+  "data": {
+    "events": [
+      {
+        "ticker": "GOOG",
+        "price": 2108,
+        "date": "2021-03-06T17:53:18.661Z"
+      },
+      {
+        "ticker": "BTCUSD",
+        "price": 48547.58,
+        "date": "2021-03-06T19:53:12.472Z"
+      },
+      {
+        "ticker": "BTCUSD",
+        "price": 48547.58,
+        "date": "2021-03-06T19:53:12.472Z"
+      },
+      {
+        "ticker": "IOTAUSDT",
+        "price": 1.3001,
+        "date": "2021-03-06T20:00:06.910Z"
+      }
+    ]
+  }
+}
+```
