@@ -119,8 +119,8 @@ and it's result:
 ![GraphQL trade placed](https://github.com/c4rt0/tradeGame/blob/main/images/GraphQL_User_DB.PNG?raw=true)
 
 ============================================================================
-============================== CURRENT STATUS ==============================
-============================================================================
+CURRENT STATUS 
+
 ```
 query{
   events {
