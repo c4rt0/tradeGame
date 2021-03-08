@@ -118,7 +118,7 @@ and it's result:
 
 ![GraphQL trade placed](https://github.com/c4rt0/tradeGame/blob/main/images/GraphQL_User_DB.PNG?raw=true)
 
-======
+============================================================================
 
 Looped 
 
@@ -163,6 +163,8 @@ returns:
   }
 }
 ```
+============================================================================
+
 ```
 query{
   events {
@@ -196,6 +198,66 @@ returns
         "ticker": "IOTAUSDT",
         "price": 1.3001,
         "date": "2021-03-06T20:00:06.910Z"
+      }
+    ]
+  }
+}
+```
+
+============================================================================
+
+```
+query{
+  events {
+    ticker
+    price
+    creator {
+      email
+    }
+  }
+}
+```
+
+RETURNS :
+
+```
+{
+  "data": {
+    "events": [
+      {
+        "ticker": "GOOG",
+        "price": 2108,
+        "creator": {
+          "email": "test@adamcoding.com"
+        }
+      },
+      {
+        "ticker": "BTCUSD",
+        "price": 48547.58,
+        "creator": {
+          "email": "test@adamcoding.com"
+        }
+      },
+      {
+        "ticker": "BTCUSD",
+        "price": 48547.58,
+        "creator": {
+          "email": "test@adamcoding.com"
+        }
+      },
+      {
+        "ticker": "IOTAUSDT",
+        "price": 1.3001,
+        "creator": {
+          "email": "test@adamcoding.com"
+        }
+      },
+      {
+        "ticker": "AAPL",
+        "price": 22.22,
+        "creator": {
+          "email": "test2@adamcoding.com"
+        }
       }
     ]
   }
