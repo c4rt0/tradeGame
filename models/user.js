@@ -14,7 +14,7 @@ const userSchema = new Schema({
     placedTrades: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Event'
+            ref: 'Portfolio'
         }
     ] 
 });

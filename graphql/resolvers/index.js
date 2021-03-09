@@ -1,20 +1,20 @@
 const bcrypt = require('bcryptjs');
 
-const Event = require('../../models/event');
+const Portfolio = require('../../models/portfolio');
 const User = require('../../models/user');
 
-const events = async eventIds => {
+const portfolios = async portfolioIds => {
     try {
-        const events = await Event.find({ _id: { $in: eventIds } });
-        events.map(event => {
+        const portfolios = await Portfolio.find({ _id: { $in: portfolioIds } });
+        portfolios.map(portfolio => {
         return {
-            ...event._doc,
-            _id: event.id,
-            date: new Date(event._doc.date).toISOString(),
-            creator: user.bind(this, event.creator)
+            ...portfolio._doc,
+            _id: portfolio.id,
+            date: new Date(portfolio._doc.date).toISOString(),
+            creator: user.bind(this, portfolio.creator)
         };
         });
-        return events;
+        return portfolios;
     } catch (err) {
         throw err;
     }
@@ -26,7 +26,7 @@ const user = async userId => {
         return {
         ...user._doc,
         _id: user.id,
-        placedTrades: events.bind(this, user._doc.placedTrades)
+        placedTrades: portfolios.bind(this, user._doc.placedTrades)
         };
     } catch (err) {
         throw err;
@@ -34,15 +34,15 @@ const user = async userId => {
 };
     
 module.exports = {
-    events: async () => {
+    portfolios: async () => {
         try {
-        const events = await Event.find();
-        return events.map(event => {
+        const portfolios = await Portfolio.find();
+        return portfolios.map(portfolio => {
             return {
-            ...event._doc,
-            _id: event.id,
-            date: new Date(event._doc.date).toISOString(),
-            creator: user.bind(this, event._doc.creator)
+            ...portfolio._doc,
+            _id: portfolio.id,
+            date: new Date(portfolio._doc.date).toISOString(),
+            creator: user.bind(this, portfolio._doc.creator)
             };
         });
         } catch (err) {
@@ -50,28 +50,28 @@ module.exports = {
         }
     },
     placeTrade: async args => {
-        const event = new Event({
-        ticker: args.eventInput.ticker,
-        description: args.eventInput.description,
-        price: +args.eventInput.price,
-        date: new Date(args.eventInput.date),
-        creator: '60456346b490ca5590f171bf'
+        const portfolio = new Portfolio({
+        ticker: args.portfolioInput.ticker,
+        description: args.portfolioInput.description,
+        price: +args.portfolioInput.price,
+        date: new Date(args.portfolioInput.date),
+        creator: '6043b9a6b805a717e8b5e1cf'
         });
         let placedTrade;
         try {
-        const result = await event.save();
+        const result = await portfolio.save();
         placedTrade = {
             ...result._doc,
             _id: result._doc._id.toString(),
-            date: new Date(event._doc.date).toISOString(),
+            date: new Date(portfolio._doc.date).toISOString(),
             creator: user.bind(this, result._doc.creator)
         };
-        const creator = await User.findById('60456346b490ca5590f171bf');
+        const creator = await User.findById('6043b9a6b805a717e8b5e1cf');
     
         if (!creator) {
             throw new Error('User not found.');
         }
-        creator.placedTrades.push(event);
+        creator.placedTrades.push(portfolio);
         await creator.save();
     
         return placedTrade;

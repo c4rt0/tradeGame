@@ -1,7 +1,7 @@
 const { buildSchema } = require('graphql');
 
 module.exports = buildSchema(`
-        type Event {
+        type Portfolio {
             _id: ID!
             ticker: String!
             description: String!
@@ -14,10 +14,10 @@ module.exports = buildSchema(`
             _id: ID!
             email: String!
             password: String
-            placedTrades: [Event!]
+            placedTrades: [Portfolio!]
         }
 
-        input EventInput {
+        input PortfolioInput {
             ticker: String!
             description: String!
             price: Float!
@@ -30,10 +30,10 @@ module.exports = buildSchema(`
         }
 
         type RootQuery {
-            events: [Event!]!
+            portfolios: [Portfolio!]!
         }
         type RootMutation {
-            placeTrade(eventInput: EventInput): Event
+            placeTrade(portfolioInput: PortfolioInput): Portfolio
             createUser(userInput: UserInput): User
         }
         
