@@ -11,10 +11,10 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    placedTrades: [
+    createdTrades: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Portfolio'
+            ref: 'Trade'
         }
     ] 
 });

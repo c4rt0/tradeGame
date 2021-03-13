@@ -1,44 +1,54 @@
 const { buildSchema } = require('graphql');
 
 module.exports = buildSchema(`
-        type Portfolio {
-            _id: ID!
-            ticker: String!
-            description: String!
-            price: Float!
-            date: String!
-            creator: User!
-        }
+type Trading{
+    _id: ID!
+    trade: Trade!
+    user: User!
+    createdAt: String!
+    updatedAt: String!
+}
 
-        type User {
-            _id: ID!
-            email: String!
-            password: String
-            placedTrades: [Portfolio!]
-        }
+type Trade {
+    _id: ID!
+    ticker: String!
+    description: String!
+    price: Float!
+    date: String!
+    trader: User!
+}
 
-        input PortfolioInput {
-            ticker: String!
-            description: String!
-            price: Float!
-            date: String!
-        }
+type User {
+    _id: ID!
+    email: String!
+    password: String
+    createdTrades: [Trade!]
+}
 
-        input UserInput {
-            email: String!
-            password: String!
-        }
+input TradeInput {
+    ticker: String!
+    description: String!
+    price: Float!
+    date: String!
+}
 
-        type RootQuery {
-            portfolios: [Portfolio!]!
-        }
-        type RootMutation {
-            placeTrade(portfolioInput: PortfolioInput): Portfolio
-            createUser(userInput: UserInput): User
-        }
-        
-        schema {
-            query: RootQuery
-            mutation: RootMutation
-        }
-    `);
+input UserInput {
+    email: String!
+    password: String!
+}
+
+type RootQuery {
+    trades: [Trade!]!
+    tradings: [Trading!] 
+}
+type RootMutation {
+    createTrade(tradeInput: TradeInput): Trade
+    createUser(userInput: UserInput): User
+    
+}
+
+schema {
+    query: RootQuery
+    mutation: RootMutation
+}
+`);

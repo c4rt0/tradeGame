@@ -67,7 +67,7 @@ Sample mutation for GRAPHQL:
 
 ```
 mutation {
-  createPortfolio(portfolioInput: {ticker:"AAPL", description:"Some other description", price:121.42, date:"2021-03-06T15:06:50.643Z"}){
+  createTrade(tradeInput: {ticker:"AAPL", description:"Some other description", price:121.42, date:"2021-03-06T15:06:50.643Z"}){
     ticker
     price
   }
@@ -78,14 +78,14 @@ Sample GRAPHQL querry:
 
 ```
 query {
-  portfolios {
+  trades {
     ticker
     _id
   }
 }
 ```
 
-Now after running mutation under link above (./graphql) details of portfolio are being saved into mongo database cluster.
+Now after running mutation under link above (./graphql) details of trade are being saved into mongo database cluster.
 
 At this point, once creating user schema with username and password in GRAPHQL I also installed bcryptjs in order to hash those passwords and compare results to incoming passwords in the future.
 
@@ -106,7 +106,7 @@ Further mutation of placing a trade:
 
 ```
 mutation {
-  placeTrade(portfolioInput: {ticker: "GOOG", description: "One of most common stocks", price: 2108, date: "2021-03-06T17:53:18.661Z"}) {
+  createTrade(tradeInput: {ticker: "GOOG", description: "One of most common stocks", price: 2108, date: "2021-03-06T17:53:18.661Z"}) {
     ticker
     price
     description
@@ -123,7 +123,7 @@ CURRENT STATUS
 
 ```
 query{
-  portfolios {
+  trades {
     ticker
     price
     creator {
@@ -138,7 +138,7 @@ RETURNS :
 ```
 {
   "data": {
-    "portfolios": [
+    "trades": [
       {
         "ticker": "GOOG",
         "price": 2108,

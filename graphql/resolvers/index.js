@@ -1,20 +1,20 @@
 const bcrypt = require('bcryptjs');
 
-const Portfolio = require('../../models/portfolio');
+const Trade = require('../../models/trade');
 const User = require('../../models/user');
 
-const portfolios = async portfolioIds => {
+const trades = async tradeIds => {
     try {
-        const portfolios = await Portfolio.find({ _id: { $in: portfolioIds } });
-        portfolios.map(portfolio => {
+        const trades = await Trade.find({ _id: { $in: tradeIds } });
+        trades.map(trade => {
         return {
-            ...portfolio._doc,
-            _id: portfolio.id,
-            date: new Date(portfolio._doc.date).toISOString(),
-            creator: user.bind(this, portfolio.creator)
+            ...trade._doc,
+            _id: trade.id,
+            date: new Date(trade._doc.date).toISOString(),
+            trader: user.bind(this, trade.trader)
         };
         });
-        return portfolios;
+        return trades;
     } catch (err) {
         throw err;
     }
@@ -26,55 +26,55 @@ const user = async userId => {
         return {
         ...user._doc,
         _id: user.id,
-        placedTrades: portfolios.bind(this, user._doc.placedTrades)
+        createdTrades: trades.bind(this, user._doc.createdTrades)
         };
     } catch (err) {
         throw err;
     }
 };
-    
+
 module.exports = {
-    portfolios: async () => {
+    trades: async () => {
         try {
-        const portfolios = await Portfolio.find();
-        return portfolios.map(portfolio => {
+        const trades = await Trade.find();
+        return trades.map(trade => {
             return {
-            ...portfolio._doc,
-            _id: portfolio.id,
-            date: new Date(portfolio._doc.date).toISOString(),
-            creator: user.bind(this, portfolio._doc.creator)
+            ...trade._doc,
+            _id: trade.id,
+            date: new Date(trade._doc.date).toISOString(),
+            trader: user.bind(this, trade._doc.trader)
             };
         });
         } catch (err) {
         throw err;
         }
     },
-    placeTrade: async args => {
-        const portfolio = new Portfolio({
-        ticker: args.portfolioInput.ticker,
-        description: args.portfolioInput.description,
-        price: +args.portfolioInput.price,
-        date: new Date(args.portfolioInput.date),
-        creator: '6043b9a6b805a717e8b5e1cf'
+    createTrade: async args => {
+        const trade = new Trade({
+        ticker: args.tradeInput.ticker,
+        description: args.tradeInput.description,
+        price: +args.tradeInput.price,
+        date: new Date(args.tradeInput.date),
+        trader: '60456346b490ca5590f171bf'
         });
-        let placedTrade;
+        let createdTrade;
         try {
-        const result = await portfolio.save();
-        placedTrade = {
+        const result = await trade.save();
+        createdTrade = {
             ...result._doc,
             _id: result._doc._id.toString(),
-            date: new Date(portfolio._doc.date).toISOString(),
-            creator: user.bind(this, result._doc.creator)
+            date: new Date(trade._doc.date).toISOString(),
+            trader: user.bind(this, result._doc.trader)
         };
-        const creator = await User.findById('6043b9a6b805a717e8b5e1cf');
+        const trader = await User.findById('60456346b490ca5590f171bf');
     
-        if (!creator) {
+        if (!trader) {
             throw new Error('User not found.');
         }
-        creator.placedTrades.push(portfolio);
-        await creator.save();
+        trader.createdTrades.push(trade);
+        await trader.save();
     
-        return placedTrade;
+        return createdTrade;
         } catch (err) {
         console.log(err);
         throw err;

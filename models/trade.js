@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const portfolioSchema = new mongoose.Schema({
+const tradeSchema = new mongoose.Schema({
     ticker: {
         type: String,
         required: true
@@ -19,10 +19,10 @@ const portfolioSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    creator: {
+    trader: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     }
 });
 
-module.exports = mongoose.model('Portfolio', portfolioSchema);
+module.exports = mongoose.model('Trade', tradeSchema);
