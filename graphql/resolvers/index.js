@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 
 const Trade = require('../../models/trade');
 const User = require('../../models/user');
+const PlacedTrade = require('../../models/placedTrades');
 
 const trades = async tradeIds => {
     try {
@@ -47,6 +48,21 @@ module.exports = {
         });
         } catch (err) {
         throw err;
+        }
+    },
+    placedTrades: async () => {
+        try{
+            const placedTrades = await PlacedTrade.find();
+            return placedTrades.map(placedTrade => {
+                return { 
+                    ...placedTrade._doc, 
+                    _id: placedTrade.id, 
+                    createdAt: new Date(placedTrade._doc.createdAt).toISOString(),
+                    updatedAt: new Date(placedTrade._doc.updatedAt).toISOString()
+                };
+            });
+        } catch(err) {
+            throw err;
         }
     },
     createTrade: async args => {
@@ -99,5 +115,19 @@ module.exports = {
         } catch (err) {
         throw err;
         }
+    },
+    placeTrade: async args => {
+        const fetchedTrade = await Trade.findOne({_id: args.tradeId});
+        const placedTrade = new PlacedTrade({
+            user: '60456346b490ca5590f171bf',
+            trade: fetchedTrade
+        });
+        const result = await placedTrade.save();
+        return  { 
+            ...result._doc, 
+            _id: result.id,
+            createdAt: new Date(result._doc.createdAt).toISOString(),
+            updatedAt: new Date(result._doc.updatedAt).toISOString()
+        };
     }
 };

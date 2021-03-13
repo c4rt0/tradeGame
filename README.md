@@ -116,7 +116,7 @@ mutation {
 
 and it's result:
 
-![GraphQL trade placed](https://github.com/c4rt0/tradeGame/blob/main/images/GraphQL_User_DB.PNG?raw=true)
+![GraphQL trade created](https://github.com/c4rt0/tradeGame/blob/main/images/GraphQL_User_DB.PNG?raw=true)
 
 =========================
 CURRENT STATUS 
@@ -175,6 +175,31 @@ RETURNS :
         }
       }
     ]
+  }
+}
+```
+
+Placing Trades:
+
+```
+mutation {
+  placeTrade(tradeId: "604ce201df5fd815ace258f0") {
+    _id
+    createdAt
+    
+  }
+}
+```
+
+RETURNS:
+
+```
+{
+  "data": {
+    "placeTrade": {
+      "_id": "604d2a0bfa22eb0f3457e9ec",
+      "createdAt": "2021-03-13T21:09:31.723Z"
+    }
   }
 }
 ```

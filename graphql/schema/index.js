@@ -39,12 +39,13 @@ input UserInput {
 
 type RootQuery {
     trades: [Trade!]!
-    tradings: [Trading!] 
+    placedTrades: [Trading!] 
 }
 type RootMutation {
     createTrade(tradeInput: TradeInput): Trade
     createUser(userInput: UserInput): User
-    
+    placeTrade(tradeId: ID!): Trading!
+    cancelTrade(tradingID: ID!): Trade!
 }
 
 schema {

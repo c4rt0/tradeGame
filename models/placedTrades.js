@@ -16,4 +16,4 @@ const tradingSchema = new Schema (
     { timestamps: true }
 );
 
-module.exports = mongoose.model('Trading', tradingSchema);
+module.exports = mongoose.model('PlacedTrades', tradingSchema);
