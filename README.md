@@ -1,6 +1,6 @@
 # tradegame.org
 
-Ok, so... initially this supposed to be short and quick project. During development phase I decided to jump into GRAPHQL and resign of the good old REST API style just to learn and develop something new / fresh. Oh man... it's fun (&it takes time) ^_^
+Ok, so... initially this supposed to be a short and quick project. During early development phase I decided to jump into GRAPHQL and resign of the good old REST API just to learn and develop something new / fresh. Oh man... it's fun (&it takes time) ^_^
 
 ### 6 Mar 2021
 ============================================================================
