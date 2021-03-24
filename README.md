@@ -141,3 +141,69 @@ RETURNS :
   }
 }
 ```
+
+Placing Trades:
+
+```
+mutation {
+  placeTrade(tradeId: "604ce201df5fd815ace258f0") {
+    _id
+    createdAt
+    
+  }
+}
+```
+
+RETURNS:
+
+```
+{
+  "data": {
+    "placeTrade": {
+      "_id": "604d2a0bfa22eb0f3457e9ec",
+      "createdAt": "2021-03-13T21:09:31.723Z"
+    }
+  }
+}
+```
+
+/// DEPRACATED :
+
+
+While running this app remember to install node and some sort of mysql server.
+I simply installed Wampserver64 just because it's convinient, quick and easy to use. Once server is up and running, in terminal navigate to directory with server.js file and type in :
+
+To test MySQL functionality, uncomment selected part of code and run:
+
+```bash
+node mysql_server.js
+```
+
+Run tradegame with :
+
+```bash
+npm run dev
+```
+
+In case you want to have a look at all available tickers under iexcloud.io, just replace token in the link below:
+
+```
+https://cloud.iexapis.com/beta/ref-data/symbols?token=YOUR_TOKEN_HERE
+```
+
+03/02/2021
+Sample request for historical data:
+
+```
+https://cloud.iexapis.com/stable/stock/aapl/chart/1y?token=YOUR_TOKEN_HERE
+```
+
+Samples : sampleStockData/
+
+Location of .env file same as app.js.
+Example of the .env file :
+
+```
+IEX_API_KEY = YOUR_TOKEN_HERE
+PORT = 3000
+```
