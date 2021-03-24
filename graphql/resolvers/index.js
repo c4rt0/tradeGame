@@ -20,7 +20,19 @@ const trades = async tradeIds => {
         throw err;
     }
 };
-    
+
+const singleTrade = async tradeId => {
+    try {
+        const trade = await Trade.findById(tradeId);
+        return { 
+            ...trade._doc, 
+            _id: tradeId, 
+            trader:user.bind(this, trade.trader) };
+
+    } catch (err) {
+        throw err;
+    }
+}
 const user = async userId => {
     try {
         const user = await User.findById(userId);
@@ -56,7 +68,9 @@ module.exports = {
             return placedTrades.map(placedTrade => {
                 return { 
                     ...placedTrade._doc, 
-                    _id: placedTrade.id, 
+                    _id: placedTrade.id,
+                    user: user.bind(this, placedTrade._doc.user),
+                    trade: singleTrade.bind(this, placedTrade._doc.trade),
                     createdAt: new Date(placedTrade._doc.createdAt).toISOString(),
                     updatedAt: new Date(placedTrade._doc.updatedAt).toISOString()
                 };
@@ -126,6 +140,8 @@ module.exports = {
         return  { 
             ...result._doc, 
             _id: result.id,
+            user: user.bind(this, placedTrade._doc.user),
+            trade: singleTrade.bind(this, placedTrade._doc.trade),
             createdAt: new Date(result._doc.createdAt).toISOString(),
             updatedAt: new Date(result._doc.updatedAt).toISOString()
         };
