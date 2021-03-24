@@ -1,7 +1,7 @@
 const { buildSchema } = require('graphql');
 
 module.exports = buildSchema(`
-type Trading{
+type PlacedTrade{
     _id: ID!
     trade: Trade!
     user: User!
@@ -39,12 +39,12 @@ input UserInput {
 
 type RootQuery {
     trades: [Trade!]!
-    placedTrades: [Trading!] 
+    placedTrades: [PlacedTrade!]!
 }
 type RootMutation {
     createTrade(tradeInput: TradeInput): Trade
     createUser(userInput: UserInput): User
-    placeTrade(tradeId: ID!): Trading!
+    placeTrade(tradeId: ID!): PlacedTrade!
     cancelTrade(tradingID: ID!): Trade!
 }
 

@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 
 const Trade = require('../../models/trade');
 const User = require('../../models/user');
-const PlacedTrade = require('../../models/placedTrades');
+const PlacedTrade = require('../../models/placedTrade');
 
 const trades = async tradeIds => {
     try {
