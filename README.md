@@ -81,7 +81,7 @@ and it's result:
 
 ![GraphQL trade created](https://github.com/c4rt0/tradeGame/blob/main/images/GraphQL_User_DB.PNG?raw=true)
 
-=========================
+============================================================================
 CURRENT STATUS 
 
 ```
@@ -141,6 +141,7 @@ RETURNS :
   }
 }
 ```
+<<<<<<< HEAD
 
 Placing Trades:
 
@@ -212,3 +213,5 @@ Example of the .env file :
 IEX_API_KEY = YOUR_TOKEN_HERE
 PORT = 3000
 ```
+=======
+>>>>>>> parent of 1a8c7cf (API is now async, renamed MongoDB collections)
