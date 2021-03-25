@@ -1,6 +1,79 @@
 # tradegame.org
 
-Ok, so... initially this supposed to be a short and quick project. During early development phase I decided to jump into GRAPHQL and resign of the good old REST API just to learn and develop something new / fresh. Oh man... it's fun (&it takes time) ^_^
+Ok, so... initially this supposed to be a short and quick project. During early development phase I decided to jump into GRAPHQL and resign of the good old REST API just to learn and develop something new / fresh. Oh man... it's fun (& it takes time) ^_^
+
+### 25 Mar 2021
+
+Refactoring code,
+
+```
+mutation{
+  createTrade(tradeInput:{ticker:"BTCUSD", description:"Father and Mother of cryptocurrency",price:51250,date:"2021-03-25T17:34:47.745Z"}) {
+    _id
+    ticker
+    price
+    trader {
+      email
+    }
+  }
+}
+```
+
+produces now :
+
+```
+{
+  "data": {
+    "createTrade": {
+      "_id": "605cca0b9d028938203715c0",
+      "ticker": "BTCUSD",
+      "price": 51250,
+      "trader": {
+        "email": "test2@adamcoding.com"
+      }
+    }
+  }
+}
+```
+ALL _id data:
+
+```
+query {
+  trades {
+    ticker
+    _id
+  }
+}
+```
+
+```
+{
+  "data": {
+    "trades": [
+      {
+        "ticker": "GOOG",
+        "_id": "604ce1b7df5fd815ace258ef"
+      },
+      {
+        "ticker": "GOOG",
+        "_id": "604ce201df5fd815ace258f0"
+      },
+      {
+        "ticker": "TSLA",
+        "_id": "604ce2d9f56e4433941ad2f8"
+      },
+      {
+        "ticker": "AAPL",
+        "_id": "605a1bad1856c70ba0a459b8"
+      },
+      {
+        "ticker": "BTCUSD",
+        "_id": "605cca0b9d028938203715c0"
+      }
+    ]
+  }
+}
+```
 
 ### 6 Mar 2021
 ============================================================================
