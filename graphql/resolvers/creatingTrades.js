@@ -35,7 +35,6 @@ module.exports = {
         
             return createdTrade;
         } catch (err) {
-        // console.log(err);
         throw err;
         }
     }

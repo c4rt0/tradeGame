@@ -16,7 +16,6 @@ const trades = async tradeIds => {
 const singleTrade = async tradeId => {
     try {
         const trade = await Trade.findById(tradeId);
-        // console.log(trade);
         return transformTrade(trade);
     } catch (err) {
         throw err;

@@ -8,7 +8,6 @@ module.exports = {
         try{
             const placedTrades = await PlacedTrade.find();
             return placedTrades.map(placedTrade => {
-                // console.log(placedTrade);
                 return transformPlacedTrade(placedTrade);
             });
         } catch (err) {
