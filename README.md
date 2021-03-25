@@ -52,38 +52,6 @@ Now after running mutation under link above (./graphql) details of trade are bei
 
 At this point, once creating user schema with username and password in GRAPHQL I also installed bcryptjs in order to hash those passwords and compare results to incoming passwords in the future.
 
-============ 
-
-placeTrade mutation is now implemented including cancelTrade option, mutation example :
-
-```
-mutation{
-  cancelTrade(placedTradeId:"605bcdaacd88fc4cc843f9a6"){
-    ticker
-    trader {
-      email
-    }
-  }
-}
-```
-
-returns :
-
-```
-{
-  "data": {
-    "cancelTrade": {
-      "ticker": "TSLA",
-      "trader": {
-        "email": "test2@adamcoding.com"
-      }
-    }
-  }
-}
-```
-
-Where placedTradeId was hardcoded and taken from mongodb cluster.
-
 ============================================================================
 
 Used findOne() to block double user creation based on email address. Mutation for creating user (typed in the GraphiQl - localhost:3000/graphql):
@@ -114,7 +82,6 @@ and it's result:
 ![GraphQL trade created](https://github.com/c4rt0/tradeGame/blob/main/images/GraphQL_User_DB.PNG?raw=true)
 
 ============================================================================
-CURRENT STATUS 
 
 ```
 query{
@@ -198,6 +165,39 @@ RETURNS:
   }
 }
 ```
+
+============================================================================
+CURRENT STATUS 
+
+placeTrade mutation is now implemented including cancelTrade option, mutation example :
+
+```
+mutation{
+  cancelTrade(placedTradeId:"605bcdaacd88fc4cc843f9a6"){
+    ticker
+    trader {
+      email
+    }
+  }
+}
+```
+
+returns :
+
+```
+{
+  "data": {
+    "cancelTrade": {
+      "ticker": "TSLA",
+      "trader": {
+        "email": "test2@adamcoding.com"
+      }
+    }
+  }
+}
+```
+
+Where placedTradeId was hardcoded and taken from mongodb cluster.
 
 /// DEPRACATED :
 
