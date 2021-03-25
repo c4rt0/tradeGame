@@ -165,6 +165,56 @@ RETURNS:
   }
 }
 ```
+And simple query :
+
+```
+query {
+  placedTrades {
+    trade { 
+    ticker
+    trader 
+      {
+      email
+    	}
+    }
+  }
+}
+```
+
+returns :
+
+```
+{
+  "data": {
+    "placedTrades": [
+      {
+        "trade": {
+          "ticker": "TSLA",
+          "trader": {
+            "email": "test2@adamcoding.com"
+          }
+        }
+      },
+      {
+        "trade": {
+          "ticker": "GOOG",
+          "trader": {
+            "email": "test@adamcoding.com"
+          }
+        }
+      },
+      {
+        "trade": {
+          "ticker": "AAPL",
+          "trader": {
+            "email": "test2@adamcoding.com"
+          }
+        }
+      }
+    ]
+  }
+}
+```
 
 =============================================================
 
