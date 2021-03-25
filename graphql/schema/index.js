@@ -45,7 +45,7 @@ type RootMutation {
     createTrade(tradeInput: TradeInput): Trade
     createUser(userInput: UserInput): User
     placeTrade(tradeId: ID!): PlacedTrade!
-    cancelTrade(tradingID: ID!): Trade!
+    cancelTrade(placedTradeId: ID!): Trade!
 }
 
 schema {

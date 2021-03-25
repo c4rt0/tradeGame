@@ -145,5 +145,20 @@ module.exports = {
             createdAt: new Date(result._doc.createdAt).toISOString(),
             updatedAt: new Date(result._doc.updatedAt).toISOString()
         };
+    },
+    cancelTrade: async args => {
+        try {
+            const placedTrade = await PlacedTrade.findById(args.placedTradeId).populate('trade');
+            const trade = { 
+                ...placedTrade.trade._doc, 
+                _id: placedTrade.trade.id, 
+                trader: user.bind(this, placedTrade.trade._doc.trader ) 
+            };
+            console.log(placedTrade);
+            await PlacedTrade.deleteOne({_id: args.placedTradeId});
+            return trade;
+        } catch (error) {
+            throw error;
+        }
     }
 };
