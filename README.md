@@ -166,7 +166,8 @@ RETURNS:
 }
 ```
 
-============================================================================
+=============================================================
+
 CURRENT STATUS 
 
 placeTrade mutation is now implemented including cancelTrade option, mutation example :
