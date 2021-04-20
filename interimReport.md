@@ -1,24 +1,36 @@
+
+| Adam Piasecki |Interim Report |
+| :--: |:--:|
+| left bar      | right bar     |
+
+# Trade game
+
+## Introduction
+
+Not many ideas seem trully complex in the initial stage of implementation. It is easy to follow tutorials presented by professionals with many years of significant experience. Steps are logical, logic itself is previously investigated   both accordingly to level of understanding and skill of an intentional observer. Nicely introduced tools used during the lectures are previously investigated not only from functionality stand point but also considering support, ease of use and documentation. Beginner coders thrown into the deep ocean of freely floating knowledge face reality which might turn out to be overwhelming. Creativity in the beginning should be rather treated as a wild horse - and that's what I tend to learn during this project the most. Indeed nothing can be done without deep understanding of the technology behind the scenes, but fundamental here is planning and exacution of crucial milestones which in the end become the tools that we craft.
+
+Trade game is no different. With a few years of exposure to trading, I decided to create something that would allow me (and others) to practice knowledge gathered over the years on virtual accounts, without a risk of loosing real money. 
+
+Originally in a final proposal I stated, that tradegame will be an online platform which will allow users to take part in an investment contest. Eeach individual will start with the virtual amount of $100,000 and access to live asset data. Users will be able to see their performance in comparison to other investors on the score board. Portfolios and assets of selected users will be visible to everyone. Portfolio reset to original $100,000 value is also available for those users who would like to start the game again.
+
+## Funcrtional description at this stage
+(How the game will work, how am I going to build it, what prototyping have I done so far, what technology have I used until now)
+
+## Technology 
+
+## Data model 
+What's the ... 
+
+## Architecture 
+
+
+===== README =====
+
 # tradegame.org
-
-### 20 Apr 2021
-
-NOTES (to modify):
-
-a) Trades instead of description should have amount,
-  * modify schema,
-  * modify resolvers
-
-b) Users should be divided to those with and without admin permissions
-
-c) Implement user authentication
-
-d) Implement simple frontend
-
-### 25 Mar 2021
 
 Ok, so... initially this supposed to be a short and quick project. During early development phase I decided to jump into GRAPHQL and resign of the good old REST API just to learn and develop something new / fresh. Oh man... it's fun (& it takes time) ^_^
 
-
+### 25 Mar 2021
 
 Refactoring code,
 
