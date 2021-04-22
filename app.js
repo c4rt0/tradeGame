@@ -26,7 +26,7 @@ app.use(
 
 // Connecting to db
 mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@tradecluster0.dmvrd.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`).then(() => {
-    console.log('Connection succesfull! ')
+    console.log('Connection succesfull!')
     app.listen(3000);
 })
 .catch(err => {

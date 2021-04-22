@@ -8,14 +8,15 @@ type PlacedTrade{
     createdAt: String!
     updatedAt: String!
 }
-
+""" Main Trade schema """
 type Trade {
     _id: ID!
     ticker: String!
     description: String!
-    price: Float!
-    date: String!
-    trader: User!
+    #price: Float!
+    #date: String!
+    "Trader is for now pre-defined"
+    user: User!
 }
 
 type User {
@@ -28,8 +29,8 @@ type User {
 input TradeInput {
     ticker: String!
     description: String!
-    price: Float!
-    date: String!
+    #price: Float!
+    #date: String!
 }
 
 input UserInput {

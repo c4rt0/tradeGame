@@ -8,18 +8,18 @@ const tradeSchema = new mongoose.Schema({
         required: true
     },
     description : {
-        type: String,
-        required: true
+         type: String,
+         required: true
     },
-    price: {
-        type: Number,
-        required: true
-    },
-    date: {
-        type: Date,
-        required: true
-    },
-    trader: {
+    // price: {
+    //     type: Number,
+    //     required: true
+    // },
+    // date: {
+    //     type: Date,
+    //     required: true
+    // },
+    user: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     }

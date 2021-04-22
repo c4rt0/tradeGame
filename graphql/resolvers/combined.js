@@ -26,8 +26,8 @@ const transformTrade = trade => {
     return {
         ...trade._doc,
         _id: trade.id,
-        date: dateToString(trade._doc.date),
-        trader: user.bind(this, trade.trader)
+        //date: dateToString(trade._doc.date),
+        user: user.bind(this, trade.user)
     };
 };
 

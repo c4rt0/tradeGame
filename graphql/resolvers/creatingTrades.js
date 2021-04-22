@@ -1,5 +1,6 @@
 const Trade = require('../../models/trade');
-const { dateToString } = require('../../helpers/date');
+const User = require('../../models/user')
+
 const { transformTrade } = require('./combined');
 
 module.exports = {
@@ -17,22 +18,21 @@ module.exports = {
         const trade = new Trade({
         ticker: args.tradeInput.ticker,
         description: args.tradeInput.description,
-        price: +args.tradeInput.price,
-        date: dateToString(args.tradeInput.date),
-        trader: '60456346b490ca5590f171bf'
+        user: '60456346b490ca5590f171bf'
         });
         let createdTrade;
         try {
             const result = await trade.save();
             createdTrade = transformTrade(result);
-            const trader = await User.findById('60456346b490ca5590f171bf');
-        
-            if (!trader) {
+            const user = await User.findById('60456346b490ca5590f171bf');
+            if (!user) {
                 throw new Error('User not found.');
             }
-            trader.createdTrades.push(trade);
-            await trader.save();
-        
+            //
+            const tickerCheck = await Trade.findOne(trade);
+            console.log("Current ticker: " + tickerCheck.description);
+            user.createdTrades.push(trade);
+            await user.save();
             return createdTrade;
         } catch (err) {
         throw err;
