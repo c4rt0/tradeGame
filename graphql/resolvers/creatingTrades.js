@@ -11,7 +11,7 @@ module.exports = {
             return transformTrade(trade);
         });
         } catch (err) {
-        throw err;
+            throw err;
         }
     },
     createTrade: async args => {
@@ -20,13 +20,29 @@ module.exports = {
         user: '608858614259020460b80e2c',
         description: args.createTradeInput.description
         });
-        let inputTicker = args.createTradeInput.ticker;
-        if (inputTicker.length < 2 ){                       // Checking length of input ticker
-            console.log("You're ticker is too short dude!");
-        }
-        else{
+        const inputTicker = args.createTradeInput.ticker;
+        if (inputTicker.length < 2 ){                       // Checking length of ticker
+            console.log("Dude... size matters :D");
+        } else {
             let createdTrade;
+
+            // try {
+            //     const fetchTicker = await Trade.findOne({ticker: args.createTradeInput.ticker});
+            //     // const fetchedTicker = fetchTicker.ticker;
+            //     console.log("Fetched ticker: " + fetchTicker.ticker);
+            //     console.log("Input ticker: " + inputTicker);
+            //     if (fetchTicker != null) {
+            //         console.log("Fetched ticker: " + fetchTicker.ticker);
+            //         console.log("Input ticker: " + inputTicker);
+            //         console.log("Not so fast Cowboy - your ticker already exists! " );
+            //         return;
+            //     }
+            // } catch (err) {
+            //     throw err;
+            //     }
+
             try {
+                // } else {
                 const result = await trade.save();
                 createdTrade = transformTrade(result);
                 const user = await User.findById('608858614259020460b80e2c');
@@ -38,6 +54,7 @@ module.exports = {
                 user.createdTrades.push(trade);
                 await user.save();
                 return createdTrade;
+                // }
             } catch (err) {
             throw err;
             }
