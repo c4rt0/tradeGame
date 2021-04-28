@@ -11,12 +11,16 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    admin: {
+        type: Boolean,
+        required: true
+    },
     createdTrades: [
         {
             type: Schema.Types.ObjectId,
             ref: 'Trade'
         }
-    ] 
+    ]
 });
 
 module.exports = mongoose.model('User', userSchema);

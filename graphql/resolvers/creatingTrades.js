@@ -16,26 +16,31 @@ module.exports = {
     },
     createTrade: async args => {
         const trade = new Trade({
-        ticker: args.tradeInput.ticker,
-        description: args.tradeInput.description,
-        user: '60456346b490ca5590f171bf'
+        ticker: args.createTradeInput.ticker,
+        user: '608858614259020460b80e2c',
+        description: args.createTradeInput.description
         });
-        let createdTrade;
-        try {
-            const result = await trade.save();
-            createdTrade = transformTrade(result);
-            const user = await User.findById('60456346b490ca5590f171bf');
-            if (!user) {
-                throw new Error('User not found.');
+        let inputTicker = args.createTradeInput.ticker;
+        if (inputTicker.length < 2 ){                       // Checking length of input ticker
+            console.log("You're ticker is too short dude!");
+        }
+        else{
+            let createdTrade;
+            try {
+                const result = await trade.save();
+                createdTrade = transformTrade(result);
+                const user = await User.findById('608858614259020460b80e2c');
+                if (!user) {
+                    throw new Error('User not found.');
+                }
+                const tickerCheck = await Trade.findOne(trade);
+                console.log("Created trade with ticker: " + tickerCheck.ticker);
+                user.createdTrades.push(trade);
+                await user.save();
+                return createdTrade;
+            } catch (err) {
+            throw err;
             }
-            //
-            const tickerCheck = await Trade.findOne(trade);
-            console.log("Current ticker: " + tickerCheck.description);
-            user.createdTrades.push(trade);
-            await user.save();
-            return createdTrade;
-        } catch (err) {
-        throw err;
         }
     }
 };

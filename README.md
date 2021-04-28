@@ -1,5 +1,16 @@
 # tradegame.org
 
+Creating user:
+
+```
+mutation {
+  createUser(userInput: {email:"test_user@coding.com", password:"1234"}) {
+    email
+    admin
+  }
+}
+```
+
 ### 20 Apr 2021
 
 NOTES (to modify):
@@ -237,7 +248,6 @@ mutation {
   placeTrade(tradeId: "604ce201df5fd815ace258f0") {
     _id
     createdAt
-    
   }
 }
 ```

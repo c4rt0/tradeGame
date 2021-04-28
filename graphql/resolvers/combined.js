@@ -32,11 +32,14 @@ const transformTrade = trade => {
 };
 
 const transformPlacedTrade = placedTrade => { 
+    console.log(placedTrade._doc);
     return {
     ...placedTrade._doc, 
     _id: placedTrade.id,
     user: user.bind(this, placedTrade._doc.user),
-    trade: singleTrade.bind(this, placedTrade._doc.trade),
+    trade: singleTrade.bind(this, placedTrade._doc),
+    price: placedTrade._doc.price,
+    quantity: placedTrade._doc.quantity,
     createdAt: dateToString(placedTrade._doc.createdAt),
     updatedAt: dateToString(placedTrade._doc.updatedAt)
     }
@@ -48,6 +51,7 @@ const user = async userId => {
         return {
         ...user._doc,
         _id: user.id,
+        admin: user.admin,
         createdTrades: trades.bind(this, user._doc.createdTrades)
         };
     } catch (err) {

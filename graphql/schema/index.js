@@ -1,20 +1,15 @@
 const { buildSchema } = require('graphql');
 
 module.exports = buildSchema(`
-type PlacedTrade{
-    _id: ID!
-    trade: Trade!
-    user: User!
-    createdAt: String!
-    updatedAt: String!
-}
+
 """ Main Trade schema """
 type Trade {
     _id: ID!
     ticker: String!
     description: String!
-    #price: Float!
-    #date: String!
+    price: Float!
+    quantity: Int!
+    date: String!
     "Trader is for now pre-defined"
     user: User!
 }
@@ -24,9 +19,24 @@ type User {
     email: String!
     password: String
     createdTrades: [Trade!]
+    # placedTrades: [PlacedTrades!]     # Something to work on
+    admin: Boolean!
 }
 
-input TradeInput {
+type PlacedTrade{
+    _id: ID!
+    trade: Trade!
+    createdAt: String!
+    updatedAt: String!
+}
+
+input PlacedTradeInput{
+    _id: ID!
+    price: Float!
+    quantity: Float!
+}
+
+input CreatedTradeInput {
     ticker: String!
     description: String!
     #price: Float!
@@ -39,13 +49,14 @@ input UserInput {
 }
 
 type RootQuery {
-    trades: [Trade!]!
-    placedTrades: [PlacedTrade!]!
+    trades: [Trade!]!               # it could be also called getTrades,but keeping it 
+    placedTrades: [PlacedTrade!]!   # in mind as an object it's called as a property
+                                    # which can hold a list/array of all of the trades
 }
 type RootMutation {
-    createTrade(tradeInput: TradeInput): Trade
+    createTrade(createTradeInput: CreatedTradeInput): Trade      # createTrade(named tradeinput: of type TradeInput) : returning Trade
     createUser(userInput: UserInput): User
-    placeTrade(tradeId: ID!): PlacedTrade!
+    placeTrade(placeTrade: PlacedTradeInput): Trade!
     cancelTrade(placedTradeId: ID!): Trade!
 }
 

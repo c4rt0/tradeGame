@@ -6,12 +6,20 @@ const tradingSchema = new Schema (
     {
         trade: {
             type: Schema.Types.ObjectId,
-            ref: 'Trade'
+            ref: 'PlacedTrade'
         },
         user: {
             type: Schema.Types.ObjectId,
             ref: 'User'
-        }
+        },
+        price: {
+            type: Number,
+            required: true
+        },
+        quantity: {
+            type: Number,
+            required: true
+        },
     },
     { timestamps: true }
 );

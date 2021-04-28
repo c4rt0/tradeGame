@@ -17,10 +17,16 @@ module.exports = {
 
     placeTrade: async args => {
         const fetchedTrade = await Trade.findOne({_id: args.tradeId});
+        console.log(fetchedTrade);
+        // const tickerCheck = fetchedTrade.ticker,
         const placedTrade = new PlacedTrade({
             user: '60456346b490ca5590f171bf',
-            trade: fetchedTrade
+            trade: fetchedTrade,
+            price: 14.44,
+            quantity: 12,
+            ticker: fetchedTrade.ticker
         });
+        // console.log(placedTrade)
         const result = await placedTrade.save();
         return transformPlacedTrade(result);
     },
