@@ -16,15 +16,16 @@ module.exports = {
     },
 
     placeTrade: async args => {
-        const fetchedTrade = await Trade.findOne({_id: args.tradeId});
-        console.log(fetchedTrade);
+        console.log("Trade ID: " + args.placeTrade._id);
+        const fetchedTrade = await Trade.findOne({_id: args.placeTrade._id});
+        console.log("And the Trade: "+ fetchedTrade.ticker);
         // const tickerCheck = fetchedTrade.ticker,
         const placedTrade = new PlacedTrade({
             user: '60456346b490ca5590f171bf',
             trade: fetchedTrade,
             price: 14.44,
             quantity: 12,
-            ticker: fetchedTrade.ticker
+            ticker: fetchedTrade.ticker     // This causing me a headake !
         });
         // console.log(placedTrade)
         const result = await placedTrade.save();

@@ -6,7 +6,7 @@ const tradingSchema = new Schema (
     {
         trade: {
             type: Schema.Types.ObjectId,
-            ref: 'PlacedTrade'
+            ref: 'Trade'
         },
         user: {
             type: Schema.Types.ObjectId,

@@ -26,20 +26,24 @@ const transformTrade = trade => {
     return {
         ...trade._doc,
         _id: trade.id,
-        //date: dateToString(trade._doc.date),
+        ticker: trade.ticker,
+        price: trade.price,
+        quantity: trade.quantity,
         user: user.bind(this, trade.user)
+        //date: dateToString(trade._doc.date),
     };
 };
 
 const transformPlacedTrade = placedTrade => { 
-    console.log(placedTrade._doc);
+    console.log("Yo, Placed trade details: " + placedTrade);
     return {
     ...placedTrade._doc, 
     _id: placedTrade.id,
     user: user.bind(this, placedTrade._doc.user),
-    trade: singleTrade.bind(this, placedTrade._doc),
+    ticker: placedTrade._doc.ticker,
     price: placedTrade._doc.price,
     quantity: placedTrade._doc.quantity,
+    trade: singleTrade.bind(this, placedTrade._doc),
     createdAt: dateToString(placedTrade._doc.createdAt),
     updatedAt: dateToString(placedTrade._doc.updatedAt)
     }
@@ -52,7 +56,8 @@ const user = async userId => {
         ...user._doc,
         _id: user.id,
         admin: user.admin,
-        createdTrades: trades.bind(this, user._doc.createdTrades)
+        createdTrades: trades.bind(this, user._doc.createdTrades),
+        placedTrades: trades.bind(this, user._doc.placedTrades)
         };
     } catch (err) {
         throw err;

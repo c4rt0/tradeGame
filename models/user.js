@@ -20,6 +20,12 @@ const userSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'Trade'
         }
+    ],
+    placedTrades: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'PlacedTrades'
+        }
     ]
 });
 

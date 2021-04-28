@@ -14,6 +14,13 @@ type Trade {
     user: User!
 }
 
+type AllAvailableTrades {
+    _id: ID!
+    ticker: String!
+    description: String!
+    user: User!
+}
+
 type User {
     _id: ID!
     email: String!
@@ -23,7 +30,7 @@ type User {
     admin: Boolean!
 }
 
-type PlacedTrade{
+type PlacedTrades{
     _id: ID!
     trade: Trade!
     createdAt: String!
@@ -49,14 +56,14 @@ input UserInput {
 }
 
 type RootQuery {
-    trades: [Trade!]!               # it could be also called getTrades,but keeping it 
-    placedTrades: [PlacedTrade!]!   # in mind as an object it's called as a property
-                                    # which can hold a list/array of all of the trades
+    trades: [Trade!]!           # it could be also called getTrades,but keeping it 
+    placedTrades: [PlacedTrades!]!          # in mind as an object it's called as a property
+                                            # which can hold a list/array of all of the trades
 }
 type RootMutation {
     createTrade(createTradeInput: CreatedTradeInput): Trade      # createTrade(named tradeinput: of type TradeInput) : returning Trade
     createUser(userInput: UserInput): User
-    placeTrade(placeTrade: PlacedTradeInput): Trade!
+    placeTrade(placeTrade: PlacedTradeInput): PlacedTrades!
     cancelTrade(placedTradeId: ID!): Trade!
 }
 
